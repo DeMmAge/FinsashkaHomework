@@ -1,8 +1,5 @@
 import random
-# import os
 import sys
-
-# clear = lambda: os.system('cls')
 
 field = [[0 for i in range(4)] for j in range(4)]
 win = False
@@ -91,6 +88,7 @@ def near_free_cell(x, y):
 
 # Main loop
 fill_field()
+moves = 0
 while not win:
     try:
         print_field()
@@ -122,6 +120,7 @@ while not win:
             field[getX][getY] = 0
             free_x = getX
             free_y = getY
+            moves += 1
         else:
             print('Сells should be near')
             continue
@@ -131,3 +130,6 @@ while not win:
         continue
 
 win = check_winning_positions()
+if win:
+    print(str.format('You win in {0} moves!', moves))
+    sys.exit(0)
